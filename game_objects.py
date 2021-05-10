@@ -7,7 +7,7 @@ class Apple(Entity):
         super().__init__(**kwargs)
         self.MAP_SIZE = MAP_SIZE
         self.new_position()
-
+    #Establece la posicion aleatoria de los objetos
     def new_position(self):
         self.position = (randrange(self.MAP_SIZE) + 0.5, randrange(self.MAP_SIZE) + 0.5, -0.5)
 
@@ -22,7 +22,7 @@ class Snake:
         self.create_segment(self.segment_positions[0])
         self.directions = {'a': Vec3(-1, 0, 0), 'd': Vec3(1, 0, 0), 'w': Vec3(0, 1, 0), 's': Vec3(0, -1, 0)}
         self.direction = Vec3(0, 0, 0)
-        #Teclas de control
+        #Direcionamiento de permisos, direccines en las que se nos podemos mover
         self.permissions = {'a': 1, 'd': 1, 'w': 1, 's': 1}
         self.taboo_movement = {'a': 'd', 'd': 'a', 'w': 's', 's': 'w'}
         self.speed, self.score = 12, 0
@@ -49,7 +49,7 @@ class Snake:
             self.segment_positions = self.segment_positions[-self.segment_length:]
             for segment, segment_position in zip(self.segment_entities, self.segment_positions):
                 segment.position = segment_position
-
+    #Control del snake
     def control(self):
         for key in 'wasd':
             if held_keys[key] and self.permissions[key]:
