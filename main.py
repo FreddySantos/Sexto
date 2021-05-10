@@ -1,7 +1,7 @@
 from ursina import *
 from game_objects import *
 
-
+#Confugiracion de la ventana principal
 class Game(Ursina):
     def __init__(self):
         super().__init__()
@@ -16,8 +16,10 @@ class Game(Ursina):
         self.new_game()
         #posicion de la camara
         camera.position = (self.MAP_SIZE // 2, -20.5, -20)
+        #Rotacion de la camara para un vista 3D
         camera.rotation_x = -50
 
+        #Creacion dem mapa
     def create_map(self, MAP_SIZE):
         Entity(model='quad', scale=MAP_SIZE, position=(MAP_SIZE // 2, MAP_SIZE // 2, 0), color=color.dark_gray)
         Entity(model=Grid(MAP_SIZE, MAP_SIZE), scale=MAP_SIZE,
@@ -26,6 +28,7 @@ class Game(Ursina):
     def new_game(self):
         scene.clear()
         self.create_map(self.MAP_SIZE)
+        #Bolita roja
         self.apple = Apple(self.MAP_SIZE, model='sphere', color=color.red)
         self.snake = Snake(self.MAP_SIZE)
 
